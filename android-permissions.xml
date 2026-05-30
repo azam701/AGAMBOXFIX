@@ -1,0 +1,36 @@
+<!--
+  Permissions yang perlu di-merge ke android/app/src/main/AndroidManifest.xml
+  setelah `npx cap add android`. Workflow GitHub Actions sudah otomatis
+  menyisipkan ini (lihat .github/workflows/android.yml).
+
+  Letakkan blok <uses-permission> ini SEBELUM tag <application ...>.
+-->
+
+<!-- Internet -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+<!-- Camera -->
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-feature android:name="android.hardware.camera" android:required="false" />
+
+<!-- Storage (read/write — Android <= 12) -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    android:maxSdkVersion="32" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    android:maxSdkVersion="29" />
+<!-- Storage (Android 13+) -->
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+<!-- Bluetooth (legacy <= Android 11) -->
+<uses-permission android:name="android.permission.BLUETOOTH"
+    android:maxSdkVersion="30" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+    android:maxSdkVersion="30" />
+<!-- Bluetooth (Android 12+) -->
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<!-- Lokasi diperlukan untuk scan BLE di Android 6–11 -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+    android:maxSdkVersion="30" />
